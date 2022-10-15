@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+
+    <section class="container">
+        <h1>Stock Order Page</h1>
+      <table>
+        <tr>
+          <th>Company Name</th>
+          <th>Stock Symbol</th>
+          <th>Current Price</th>
+        </tr>
+        <tr>
+          <td>Splunk</td>
+          <td>SPLK</td>
+          <td>137.55</td>
+        </tr>
+        <tr>
+          <td>Microsoft</td>
+          <td>MSFT</td>
+          <td>232.04</td>
+        </tr>
+        <tr>
+          <td>Oracle</td>
+          <td>ORCL</td>
+          <td>67.08</td>
+        </tr>
+        <tr>
+          <td>Snowflake</td>
+          <td>SNOW</td>
+          <td>235.8</td>
+        </tr>
+        <tr>
+          <td>Teradata</td>
+          <td>TDC</td>
+          <td>44.98</td>
+        </tr>
+      </table>
+      <form action="/order-stock" type="GET">
+        <p>
+            Order a Stock
+        </p>
+        <select name = "stock_symbol">
+            <option value="SPLK">SPLK</option>
+            <option value="MSFT">MSFT</option>
+            <option value="ORCL">ORCL</option>
+            <option value="SNOW">SNOW</option>
+            <option value="TDC">TDC</option>
+        </select>
+        <input type="number" name="amount" id="stock_amount" />
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </body>
+</html>
