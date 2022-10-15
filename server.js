@@ -64,6 +64,35 @@ app.get('/order-stock',(req,res)=>{
     then returns that choice.
 */
 
+const findStockByPrice = ( search_criteria) => {
+
+    const lower_reducer = (previous_stock, current_stock) => {
+        if (previous_stock.price < current_stock.price){
+            return previous_stock
+        }else{
+            return current_stock
+        }
+    }
+
+    const higher_reducer = (previous_stock, current_stock) => {
+        if (previous_stock.price > current_stock.price){
+            return previous_stock
+        }else{
+            return current_stock
+        }
+    }
+
+    switch(search_criteria){
+        case 'lowest':
+            return stocks.reduce(lower_reducer)
+        case 'highest':
+            return stocks.reduce(higher_reducer)
+        default:
+            console.log('search criteria input not accepted')
+    }
+
+
+}
 
 
 
@@ -73,6 +102,11 @@ app.get('/order-stock',(req,res)=>{
     Pass in the HTML body's input radio value to the helper function 
         to create a new variable to be used in the response. 
 */
+app.get("/search-stocks", (req,res) => {
+    const search_criteria = req.query.search
+    const stock = findStockByPrice(search_criteria)
+    res.send(stock)
+})
 
 
 
