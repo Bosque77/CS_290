@@ -4,6 +4,8 @@ import items from "./data/items";
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import OrderPage from "./pages/OrderPage";
+import Nav from "./components/Nav";
 
 function App() {
   return (
@@ -14,11 +16,14 @@ function App() {
       </header>
       <Router>
         <nav>
-
+          <Nav />
         </nav>
         <main>
           <Route path="/" exact>
             <HomePage />
+          </Route>
+          <Route path="/order" exact>
+            <OrderPage />
           </Route>
         </main>
       </Router>
