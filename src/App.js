@@ -1,25 +1,28 @@
-import './App.css';
-import stores from './data/stores';
-import items from './data/items';
-import React from 'react';
+import "./App.css";
+import stores from "./data/stores";
+import items from "./data/items";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
-function App() {  
-
+function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Welcome to the Store</h1>
+        <p>I hope your hungry :)</p>
       </header>
+      <Router>
+        <nav>
+
+        </nav>
+        <main>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+        </main>
+      </Router>
+      <footer>© 2022 Forest Schwartz.</footer>
     </div>
   );
 }
