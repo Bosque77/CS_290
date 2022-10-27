@@ -5,6 +5,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import OrderPage from "./pages/OrderPage";
+import StoresPage from "./pages/StoresPage";
 import Nav from "./components/Nav";
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/order" exact>
             <OrderPage />
+          </Route>
+          <Route path="/stores" exact>
+            <StoresPage />
           </Route>
         </main>
       </Router>
