@@ -1,4 +1,5 @@
 import React from "react";
+import SelectQuantity from "./SelectQuantity";
 
 
 const GroceryRow = ({item}) => {
@@ -8,7 +9,7 @@ const GroceryRow = ({item}) => {
             <tr>
                 <td>{item.name}</td>
                 <td className="numeric-order-data">{item.price}</td>
-                <td className="numeric-order-data"> 5 </td>
+                <td className="numeric-order-data"><SelectQuantity /> </td>
             </tr>
         </>
     )
