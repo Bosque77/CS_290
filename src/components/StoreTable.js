@@ -5,7 +5,7 @@ import stores from "../data/stores";
 const StoreTable = () => {
   return (
     <>
-      <table>
+      <table className="center-middle">
         <thead>
           <tr>
             <th>City</th>

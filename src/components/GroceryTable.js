@@ -4,7 +4,7 @@ import GroceryRow from "./GroceryRow";
 const GroceryTable = ({ items }) => {
   return (
     <>
-      <table>
+      <table className = 'center-middle'>
         <thead>
           <tr>
             <th>Name</th>
