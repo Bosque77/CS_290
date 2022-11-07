@@ -51,5 +51,29 @@ const directLinkOnClick = async () => {
 
 const expressLinkOnClick = async () => {
    console.log('inside express link')
+   try{
+      const element = document.getElementById('results-list')
+      while (element.firstChild) {
+         element.removeChild(element.firstChild);
+       }
+
+       const resp = await fetch('random-person')
+       if (resp.status===200){
+         const {first_name, last_name, phone_number, email}  = await resp.json()
+         const data_items = [first_name, last_name, phone_number, email]
+         data_items.forEach( data_item => {
+            // create a new div element
+            const newP = document.createElement("li");
+            newP.className = "collection-item"
+            const newContent = document.createTextNode(`${data_item}`);
+            newP.appendChild(newContent);
+            const element = document.getElementById('results-list')
+            element.appendChild(newP)
+            })
+       }
+
+   }catch(error){
+      console.log(error)
+   }
 
 }
