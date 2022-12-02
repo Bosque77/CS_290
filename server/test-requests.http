@@ -1,11 +1,13 @@
-###
-POST http://localhost:3000/movies HTTP/1.1
+### Correct Post
+POST http://localhost:3000/exercise HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Umma",
-    "year": 2022,
-    "language": "English Korean"
+    "name": "Pullups",
+    "reps": 15,
+    "weight": 10,
+    "unit": "lbs",
+    "data": 
 }
 
 

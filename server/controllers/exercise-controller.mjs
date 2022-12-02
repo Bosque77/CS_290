@@ -1,12 +1,13 @@
 
-import * as movies from './movies-model.mjs';
+import express from 'express';
+import * as exercise from '../models/exercise-model.mjs'
 
-
+const exerciseRouter = express.Router()
 
 
 // CREATE controller ******************************************
-app.post ('/movies', (req,res) => { 
-    movies.createMovie(
+exerciseRouter.post ('/', (req,res) => { 
+    exercise.createExercise(
         req.body.title, 
         req.body.year, 
         req.body.language
@@ -22,10 +23,10 @@ app.post ('/movies', (req,res) => {
 
 
 // RETRIEVE controller ****************************************************
-// GET movies by ID
-app.get('/movies/:_id', (req, res) => {
+// GET exercise by ID
+exerciseRouter.get('/:_id', (req, res) => {
     const movieId = req.params._id;
-    movies.findMovieById(movieId)
+    exercise.findExerciseById(movieId)
         .then(movie => { 
             if (movie !== null) {
                 res.json(movie);
@@ -40,8 +41,8 @@ app.get('/movies/:_id', (req, res) => {
 });
 
 
-// GET movies filtered by year or language
-app.get('/movies', (req, res) => {
+// GET exercise filtered by year or language
+exerciseRouter.get('/', (req, res) => {
     let filter = {};
     // filter by year
     if(req.query.year !== undefined){
@@ -51,9 +52,9 @@ app.get('/movies', (req, res) => {
     if(req.query.language !== undefined){
         filter = { language: req.query.language };
     }
-    movies.findMovies(filter, '', 0)
-        .then(movies => {
-            res.send(movies);
+    exercise.findExercises(filter, '', 0)
+        .then(exercise => {
+            res.send(exercise);
         })
         .catch(error => {
             console.error(error);
@@ -63,8 +64,8 @@ app.get('/movies', (req, res) => {
 });
 
 // DELETE Controller ******************************
-app.delete('/movies/:_id', (req, res) => {
-    movies.deleteById(req.params._id)
+exerciseRouter.delete('/:_id', (req, res) => {
+    exercise.deleteById(req.params._id)
         .then(deletedCount => {
             if (deletedCount === 1) {
                 res.status(204).send();
@@ -79,8 +80,8 @@ app.delete('/movies/:_id', (req, res) => {
 });
 
 // UPDATE controller ************************************
-app.put('/movies/:_id', (req, res) => {
-    movies.replaceMovie(
+exerciseRouter.put('/:_id', (req, res) => {
+    exercise.replaceExercise(
         req.params._id, 
         req.body.title, 
         req.body.year, 
@@ -105,3 +106,4 @@ app.put('/movies/:_id', (req, res) => {
     });
 });
 
+export default exerciseRouter
