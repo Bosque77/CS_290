@@ -8,28 +8,43 @@ const exerciseRouter = express.Router()
 // CREATE controller ******************************************
 exerciseRouter.post ('/', (req,res) => { 
     exercise.createExercise(
-        req.body.title, 
-        req.body.year, 
-        req.body.language
+        req.body.name, 
+        req.body.reps, 
+        req.body.weight,
+        req.body.unit,
+        req.body.date
         )
-        .then(movie => {
-            res.status(201).json(movie);
+        .then(exercise => {
+            res.status(201).json(exercise);
         })
         .catch(error => {
             console.log(error);
-            res.status(400).json({ error: 'Creation of a document failed due to invalid syntax.' });
+            res.status(400).json({ error: `Creation of a document failed due to invalid syntax. ${error}` });
         });
+});
+
+// GET all exercises
+exerciseRouter.get('/', (req, res) => {
+    exercise.findExercises()
+        .then(exercises => {
+            res.status(200).json(exercises);
+        })
+        .catch(error => {
+            console.log(error)
+            res.status(400).json({ Error: 'Request to retrieve document failed' });
+        })
+
 });
 
 
 // RETRIEVE controller ****************************************************
 // GET exercise by ID
 exerciseRouter.get('/:_id', (req, res) => {
-    const movieId = req.params._id;
-    exercise.findExerciseById(movieId)
-        .then(movie => { 
-            if (movie !== null) {
-                res.json(movie);
+    const exerciseId = req.params._id;
+    exercise.findExerciseById(exerciseId)
+        .then( exercise => { 
+            if (exercise !== null) {
+                res.status(200).json(exercise);
             } else {
                 res.status(404).json({ Error: 'Document not found' });
             }         
@@ -41,27 +56,43 @@ exerciseRouter.get('/:_id', (req, res) => {
 });
 
 
-// GET exercise filtered by year or language
-exerciseRouter.get('/', (req, res) => {
-    let filter = {};
-    // filter by year
-    if(req.query.year !== undefined){
-        filter = { year: req.query.year };
-    }
-    // filter by language
-    if(req.query.language !== undefined){
-        filter = { language: req.query.language };
-    }
-    exercise.findExercises(filter, '', 0)
-        .then(exercise => {
-            res.send(exercise);
-        })
-        .catch(error => {
-            console.error(error);
-            res.send({ Error: 'Request to retrieve documents failed' });
-        });
 
+
+
+
+// UPDATE controller ************************************
+exerciseRouter.put('/:_id', (req, res) => {
+    exercise.replaceExercise(
+        req.params._id,
+        req.body.name, 
+        req.body.reps, 
+        req.body.weight,
+        req.body.unit,
+        req.body.date
+    )
+    .then(numUpdated => {
+        console.log('it was replaced')
+        console.log(numUpdated)
+        if (numUpdated === 1) {
+            res.status(200).json({ 
+                _id: req.params._id, 
+                name: req.body.name, 
+                reps: req.body.reps, 
+                weight: req.body.weight,
+                unit: req.body.unit,
+                date: req.body.date
+            })
+        } else {
+            res.status(404).json({ Error: 'Document not found' });
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        res.status(400).json({ Error: 'Request to update a document failed' });
+    });
 });
+
+
 
 // DELETE Controller ******************************
 exerciseRouter.delete('/:_id', (req, res) => {
@@ -77,33 +108,6 @@ exerciseRouter.delete('/:_id', (req, res) => {
             console.error(error);
             res.send({ error: 'Request to delete a document failed' });
         });
-});
-
-// UPDATE controller ************************************
-exerciseRouter.put('/:_id', (req, res) => {
-    exercise.replaceExercise(
-        req.params._id, 
-        req.body.title, 
-        req.body.year, 
-        req.body.language
-    )
-
-    .then(numUpdated => {
-        if (numUpdated === 1) {
-            res.json({ 
-                _id: req.params._id, 
-                title: req.body.title, 
-                year: req.body.year, 
-                language: req.body.language 
-            })
-        } else {
-            res.status(404).json({ Error: 'Document not found' });
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        res.status(400).json({ Error: 'Request to update a document failed' });
-    });
 });
 
 export default exerciseRouter

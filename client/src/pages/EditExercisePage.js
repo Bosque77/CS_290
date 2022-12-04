@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 
-export const EditMoviePage = ({ movie }) => {
+export const EditExercisePage = ({ movie }) => {
  
     const [title, setTitle]       = useState(movie.title);
     const [year, setYear]         = useState(movie.year);
@@ -70,4 +70,4 @@ export const EditMoviePage = ({ movie }) => {
         </>
     );
 }
-export default EditMoviePage;
+export default EditExercisePage;
