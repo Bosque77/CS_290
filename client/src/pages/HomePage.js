@@ -46,8 +46,8 @@ function HomePage({ setExercise }) {
     return (
         <>
             <article>
-                <h2>List of Movies</h2>
-                <p>Paragraph about this page.</p>
+                <h2>List of Exercises</h2>
+                <p>Below is a list of your exercies. Add more and keep the workout going!</p>
                 <ExerciseList 
                     exercises={exercises} 
                     onEdit={onEditMovie} 

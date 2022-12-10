@@ -44,7 +44,8 @@ useEffect(()=>{
     <>
       <article>
         <h2>Add to the collection</h2>
-        <p>Paragraph about this page.</p>
+        <p>Add your exercises here! If you think of any new good workouts enter it here to view later and track your progress.
+          </p>
         <form
           onSubmit={(e) => {
             e.preventDefault();

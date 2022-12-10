@@ -41,13 +41,13 @@ function App() {
               <AddMoviePage />
             </Route>
             
-            {/* <Route path="/edit-exercise">
-              <EditMoviePage exercise={exercise} />
-            </Route> */}
+            <Route path="/edit-exercise">
+              <EditExercisePage exercise={exercise} />
+            </Route>
         </main>
 
         <footer>
-          <p>Copyright statement</p>
+          <p> @ 2022 Forest Schwartz</p>
         </footer>
       </Router>
     </>

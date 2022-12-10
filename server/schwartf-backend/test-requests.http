@@ -1,0 +1,68 @@
+### Correct Post
+POST http://localhost:3000/exercise HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Pullups",
+    "reps": 15,
+    "weight": 10,
+    "unit": "lbs",
+    "date": "2002-12-01"
+}
+
+
+### error with weight
+POST http://localhost:3000/exercise HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Pullups",
+    "reps": 15,
+    "weight": -1,
+    "unit": "lbs",
+    "date": "2002-12-01"
+}
+
+
+### no date provided
+POST http://localhost:3000/exercise HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Setups",
+    "reps": 15,
+    "weight": 35,
+    "unit": "lbs"
+}
+
+
+### testing all defaults
+POST http://localhost:3000/exercise HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Setups",
+    "reps": 15
+}
+
+###
+GET http://localhost:3000/exercise HTTP/1.1
+
+###
+GET http://localhost:3000/exercise/63898a7cc2966fbbf46b716e
+
+###
+PUT http://localhost:3000/exercise/63898a61c2966fbbf46b716c HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Pullups",
+    "reps": 20,
+    "weight": 11,
+    "unit": "lbs",
+    "date": "2002-12-01"
+}
+
+###
+DELETE http://localhost:3000/exercise/63898a61c2966fbbf46b716c  HTTP/1.1
+
